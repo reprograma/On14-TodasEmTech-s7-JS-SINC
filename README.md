@@ -25,6 +25,7 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 - E-mail: devlilitbandeira@gmail.com
 - [LinkedIn](https://www.linkedin.com/in/lilitbandeira)
 - [GitHub](https://github.com/lilitbandeira)
+
 ### Quem são as monitoras?
 
 <img src='./assets/nicoRobin.jpeg' width=500 alt='personagem nico robin do anime one piece, ela tem cabelos pretos amarrados para trás com duas mechas soltas na frente, olhos verdes, veste uma jaqueta azul e tem óculos de sol sob os cabelos, seus braços estão cruzados na frente do corpo e possuem cor preta e uma aura azul, ao fundo o universo com pétalas de flores e uma lótus aberta'>
@@ -48,7 +49,6 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 - Funções são o menor bloco de execução no JavaScript, um conjunto de instruções que executa uma tarefa ou calcula um valor;
 - Funções síncronas: São funções que, quando chamadas, pausam a thread principal (script) para realizar seu processamento, depois retorna o valor final e continua a execução da linha de código na sequência;
 
-
 <img src='./assets/sincrona.png' width=500 alt='bloco de texto com código javascript'>
 <br><br>
 
@@ -69,6 +69,7 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 - A fila de eventos (Event Loop) é responsável por enviar novas funções que foram resolvidas de forma assíncrona para a trilha principal de processamento (Call Stack), seguindo a estrutura de dados da fila (Callback Queue) assim mantendo a sequência correta de execução dos eventos/funções;
 
 ---
+
 ### 2. Callbacks
 
 - É uma função passada como argumento para outra função, que será invocada dentro da função externa para completar uma determinada rotina/ação, podendo ser síncrona ou assíncrona;
@@ -79,18 +80,19 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 <img src='./assets/callback.png' width=500 alt='bloco de texto com código javascript'>
 
 ---
+
 ### 3. Promises
 
 - Promise é um objeto do JavaScript que tem a função de lidar com assincronicidade através de estados;
 - Funções assíncronas modernas retornam uma promise que representa a eventual falha ou conclusão de uma operação assíncrona, assim uma função assíncrona retorna um valor como uma função síncrona, porém no lugar do valor final, retorna uma promessa ao valor em algum momento no futuro;
 - Ciclo de vida da Promisse (estados):
 
-  | Estado     | Significado                                                                                  |
-  | ---------- | -------------------------------------------------------------------------------------------- |
-  | Pending    | Estado inicial, quando a promise ainda está em execução (não resolveu ou rejeitou)           |
-  | Fulfilled  | Quando executou todas as operações com sucesso                                               |
-  | Rejected   | Quando a execução finalizou com erro, falhou                                                 |
-  | Settled    | Nome genérico para estado final de executado, independente de ter retornado sucesso ou erro  |
+  | Estado    | Significado                                                                                 |
+  | --------- | ------------------------------------------------------------------------------------------- |
+  | Pending   | Estado inicial, quando a promise ainda está em execução (não resolveu ou rejeitou)          |
+  | Fulfilled | Quando executou todas as operações com sucesso                                              |
+  | Rejected  | Quando a execução finalizou com erro, falhou                                                |
+  | Settled   | Nome genérico para estado final de executado, independente de ter retornado sucesso ou erro |
 
 <br>
 <img src='./assets/promise.png' width=500 alt='bloco de texto com código javascript'>
@@ -101,18 +103,19 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 - `reject()`: Função que executa caso a promise seja rejeitada;
 - Resolvemos as promises através de métodos próprios, que chamam as callbacks depois da conclusão da promise;
 - `then()`: Método que ativa uma callback quando a promise for resolvida, o argumento desta callback é sempre o valor retornado na função resolve();
-  - o then() retorna uma nova promise e por isso vários thens podem ser encadeados para casos onde existam duas ou mais operações assíncronas consecutivas, neste caso o valor do primeiro argumento de cada then encadeado será o valor do retorno do anterior; 
+  - o then() retorna uma nova promise e por isso vários thens podem ser encadeados para casos onde existam duas ou mais operações assíncronas consecutivas, neste caso o valor do primeiro argumento de cada then encadeado será o valor do retorno do anterior;
 - `catch()`: Método que ativa uma callback quando a promise for rejeitada, o argumento desta callback é sempre o valor retornado na reject();
-- `finally()` -  Método que ativa uma callback quando a promisse acabar, independente de ter sido resolvida ou rejeitada, não recebe como argumento o retorno de resolve() ou reject();
+- `finally()` - Método que ativa uma callback quando a promisse acabar, independente de ter sido resolvida ou rejeitada, não recebe como argumento o retorno de resolve() ou reject();
 
 ---
+
 ### 4. async/await
 
 - As palavra-chaves async e await atuam como um 'açúcar sintático' em cima de promises, faciltando a visualização e tornando a leitura do código assíncrono mais próxima do código síncrono;
 - Toda função que recebe o `async` se torna uma função assíncrona, que passa a retornar uma promise ao invés de retornar um valor diretamente, como uma promise o retorno desta função pode ser tratado com um then() normalmente;
 - Uma função assíncrona espera a possibilidade de a palavra-chave await ser usada para invocar código assíncrono;
 - `await` indica que o JavaScript deve esperar o retorno de uma promise para continuar a execução, importante usar apenas quando necessário tratar respostas de uma promise para não paralizar o fluxo, quando usado da maneira correta não altera a performance da aplicação;
--  o await só funciona dentro de funções assíncronas e é colocada na frente de qualquer função que retorne promise para pausar o código até que a promise seja resolvida, retornando o valor resultante; 
+- o await só funciona dentro de funções assíncronas e é colocada na frente de qualquer função que retorne promise para pausar o código até que a promise seja resolvida, retornando o valor resultante;
 - Não precisa de funções para sincronizar os resultados;
 - Outro método importante da promise é o `Promisse.all()` que recebe uma array de funções assincronas independentes entre si, evitando o uso de awaits que não sejam necessários;
 - Facilita o tratamento de erros seja com menor encadeamento do .then() ou ainda com o uso de `try/catch`;
@@ -127,15 +130,87 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 - O catch() é executado somente quando há alguma exceção no bloco try, caso contrário ele será ignorado, o argumento recebido pelo catch é a exceção ocorrida no bloco try e costuma ser chamada de err/error;
 
 ---
+
 ### 5. Exercícios para semana
 
-  
+1. Precisamos calcular o valor da parcela de um notebook que a Bigbig vai comprar, para isso precisamos descobrir o preço do produto e em seguida o número de parcelas desejadas, a partir das funções a seguir, utilize qualquer uma das ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o seguinte retorno no console: `Seu notebook custa R$3499,00 e você pagará em 10x de R$349,90`
+
+```
+function buscarPreco(produto) {
+  setTimeout(() => {
+    if (produto === "notebook") {
+      return {
+        nome: "notebook",
+        preco: 3499.00
+      }
+    } else if (produto === "smartphone") {
+      return {
+        nome: "smartphone",
+        preco: 1999.90
+      }
+    } else if (produto === "tablet"){
+      return {
+        nome: "tablet",
+        preco: 2999.90
+      }
+    } else {
+      return "Produto não encontrado"
+    }
+  }, 2000)
+}
+
+function calcularParcela(preco) {
+  let parcelasDesejadas = 10
+  setTimeout(() => {
+    return preco * parcelasDesejadas
+  }, 2000)
+}
+```
+
+2. Resolva usando async/await:
+   Você quer saber quanto vai pagar em reais por um produto comprado nos EUA e para isso precisa consultar numa "API" de cotação para descobrir o valor do Dólar no momento da compra (você deve usar o valor do dólar comercial) e calcular o valor em Real, em seguida precisa consultar outra "API" que retorna o valor de dois juros que serão cobrados sob o preço em Real e retornar o valor final no console: `O preço final do seu produto é R$5096,94`
+
+dados:
+`const precoEmDolar = 850 //preço em dólar`
+
+```
+function buscarPrecoDolar() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        comercial: "5.26",
+        turismo: "5.49",
+      });
+    }, 1000);
+  });
+}
+
+function buscarJurosImportacao() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        juros1: 0.05,
+        juros2: 0.09,
+        messages:
+        "os dois juros são aplicados no valor total do produto em real",
+      });
+    }, 1000);
+  });
+}
+
+async function calcularValorEmReal(precoEmDolar) {
+  try {}
+  catch (error) {}
+}
+```
 
 ---
+
 ## Referências
+
 | Conteúdo      | Fonte              | Link                                                                                                                                       |
 | ------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| JS Assíncrono |  Medium            | https://medium.com/reactbrasil/como-o-javascript-funciona-o-event-loop-e-o-surgimento-da-programação-assíncrona-5-maneiras-de-18d0b8d6849a |
+| JS Assíncrono | Medium             | https://medium.com/reactbrasil/como-o-javascript-funciona-o-event-loop-e-o-surgimento-da-programação-assíncrona-5-maneiras-de-18d0b8d6849a |
 |               | The code Barbarian | https://thecodebarbarian.com/tag/asyncawait.html                                                                                           |
 | Callbacks     | MDN                | https://developer.mozilla.org/pt-BR/docs/Glossary/Callback_function                                                                        |
 |               | Medium             | https://medium.com/totvsdevelopers/entendendo-funções-callback-em-javascript-7b500dc7fa22                                                  |
@@ -151,15 +226,12 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 
 ####Extras
 
-| Complementares  | Canal              | Link                                        |
-| --------------- | ------------------ | ------------------------------------------- |
-| JS Assíncrono   | DevPleno           | https://www.youtube.com/watch?v=7Bs4-rqbCQc |
-| Callbacks       | Código Fonte TV    | https://www.youtube.com/watch?v=zUtqTM6_-PM |
-|                 | Marco Bruno        | https://www.youtube.com/watch?v=0haWgdHFuJw |
-| Promises        | Código Fonte TV    | https://www.youtube.com/watch?v=nRJhc6vXyK4 |
-|                 | Erick Wendel       | https://www.youtube.com/watch?v=_gmXKsVS40s |
-| async/await     | DevPleno           | https://www.youtube.com/watch?v=D01xWkT2W7c |
-|                 | Código Fonte TV    | https://www.youtube.com/watch?v=h0sNAXE1ozo |
-
-
-
+| Complementares | Canal           | Link                                        |
+| -------------- | --------------- | ------------------------------------------- |
+| JS Assíncrono  | DevPleno        | https://www.youtube.com/watch?v=7Bs4-rqbCQc |
+| Callbacks      | Código Fonte TV | https://www.youtube.com/watch?v=zUtqTM6_-PM |
+|                | Marco Bruno     | https://www.youtube.com/watch?v=0haWgdHFuJw |
+| Promises       | Código Fonte TV | https://www.youtube.com/watch?v=nRJhc6vXyK4 |
+|                | Erick Wendel    | https://www.youtube.com/watch?v=_gmXKsVS40s |
+| async/await    | DevPleno        | https://www.youtube.com/watch?v=D01xWkT2W7c |
+|                | Código Fonte TV | https://www.youtube.com/watch?v=h0sNAXE1ozo |
