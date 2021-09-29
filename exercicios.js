@@ -38,6 +38,20 @@ function calcularParcela(preco) {
   }, 2000);
 }
 
+//RESOLUÇÃO 
+
+async function buscarPreco (){
+
+try {
+
+}catch{
+
+  
+}
+
+}
+
+
 /*
 2. Resolva usando async/await:
 
@@ -82,5 +96,13 @@ function buscarJurosImportacao() {
 
 async function calcularValorEmReal(precoEmDolar) {
   try {
-  } catch (error) {}
+    const dolar = await buscarPrecoDolar()
+    //console.log("Dolar comercial: ", dolar.comercial) nao precisa ficar imprindo
+    const juros = await buscarJurosImportacao()
+    console.log ("Juros: ", juros.juros1)
+  } catch (error) {
+    console.error("erro capturado:", error)
+  }
 }
+
+calcularValorEmReal(850)
