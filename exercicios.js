@@ -8,7 +8,7 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 function buscarPreco(produto) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      //return reject(new Error('Erro, tente de novo.'))
+      //return reject(new Error('Este produto é inexistente.'))
       if (produto === "notebook") {
         return resolve({
           nome: "notebook",
@@ -37,6 +37,7 @@ function calcularParcela(preco) {
   return new Promise((resolve, reject) => {
     let parcelasDesejadas = 10;
     setTimeout(() => {
+      //return reject(new Error('Parcela não encontrada.'))
       return resolve({
         total: preco / parcelasDesejadas,
       });
@@ -46,22 +47,25 @@ function calcularParcela(preco) {
 
 const pegarPreco = buscarPreco("notebook");
 //console.log(pegarPreco);
-pegarPreco.then((produto) => {
-  const prod_nome = produto.nome;
-  const v_note = produto.preco;
+pegarPreco
+  .then((produto) => {
+    const prod_nome = produto.nome;
+    const v_note = produto.preco;
 
-  const pegarParcela = calcularParcela(v_note, prod_nome);
-  //console.log(pegarParcela);
-
-  pegarParcela.then((parcela) => {
-    const v_total = parcela.total;
-    console.log(
-      `Seu ${prod_nome} custa $${v_note.toFixed(
-        2
-      )} e você pagará em 10x de $${v_total.toFixed(2)}.`
-    );
+    const pegarParcela = calcularParcela(v_note, prod_nome);
+    //console.log(pegarParcela);
+    pegarParcela.then((parcela) => {
+      const v_total = parcela.total;
+      console.log(
+        `Seu ${prod_nome} custa $${v_note.toFixed(
+          2
+        )} e você pagará em 10x de $${v_total.toFixed(2)}.`
+      );
+    });
+  })
+  .catch((err) => {
+    console.error("Erro capturado: ", err);
   });
-});
 
 /*
 2. Resolva usando async/await:
@@ -101,3 +105,19 @@ function buscarJurosImportacao() {
     }, 1000);
   });
 }
+
+async function resolucao() {
+  try {
+    const precoEmDolar = 850;
+    const dolar_comercial = await buscarPrecoDolar();
+    const v_comercial = dolar_comercial.comercial;
+    const valor_real = precoEmDolar * parseFloat(v_comercial);
+    const juros = await buscarJurosImportacao();
+    const total_juros = juros.juros1 + juros.juros2;
+    const valor_final = valor_real + valor_real * total_juros;
+    console.log(`O preço final do seu produto é $${valor_final.toFixed(2)}.`);
+  } catch (err) {
+    console.error("Erro capturado: ", err);
+  }
+}
+resolucao();
