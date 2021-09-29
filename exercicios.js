@@ -38,6 +38,13 @@ function calcularParcela(preco) {
   }, 2000);
 }
 
+async function buscarPreco( ) {
+  const note = await buscarPreco(produto)
+  console.log(note.produto);
+  
+}
+
+
 /*
 2. Resolva usando async/await:
 
