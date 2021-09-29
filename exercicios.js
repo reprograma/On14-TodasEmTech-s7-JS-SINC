@@ -34,7 +34,7 @@ function buscarPreco(produto) {
 function calcularParcela(preco) {
   let parcelasDesejadas = 10;
   setTimeout(() => {
-    return preco * parcelasDesejadas;
+    return preco / parcelasDesejadas;
   }, 2000);
 }
 
