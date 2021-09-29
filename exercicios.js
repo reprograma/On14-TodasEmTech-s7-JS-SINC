@@ -1,59 +1,85 @@
 /*
-
 1. Precisamos calcular o valor da parcela de um notebook que a Bigbig vai comprar, para isso precisamos descobrir o 
 preço do produto e em seguida o número de parcelas desejadas, a partir das funções a seguir, utilize qualquer uma das
 ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o seguinte retorno no console: 
-
 "Seu notebook custa R$3499,00 e você pagará em 10x de R$349,90"
-
 */
 
 function buscarPreco(produto) {
-  setTimeout(() => {
-    if (produto === "notebook") {
-      return {
-        nome: "notebook",
-        preco: 3499.0,
-      };
-    } else if (produto === "smartphone") {
-      return {
-        nome: "smartphone",
-        preco: 1999.9,
-      };
-    } else if (produto === "tablet") {
-      return {
-        nome: "tablet",
-        preco: 2999.9,
-      };
-    } else {
-      return "Produto não encontrado";
-    }
-  }, 2000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //return reject(new Error('Este produto é inexistente.'))
+      if (produto === "notebook") {
+        return resolve({
+          nome: "notebook",
+          preco: 3499.0,
+        });
+      } else if (produto === "smartphone") {
+        return resolve({
+          nome: "smartphone",
+          preco: 1999.9,
+        });
+      } else if (produto === "tablet") {
+        return resolve({
+          nome: "tablet",
+          preco: 2999.9,
+        });
+      } else {
+        return resolve({
+          msg: "Produto não encontrado",
+        });
+      }
+    }, 2000);
+  });
 }
 
 function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
-  setTimeout(() => {
-    return preco / parcelasDesejadas;
-  }, 2000);
+  return new Promise((resolve, reject) => {
+    let parcelasDesejadas = 10;
+    setTimeout(() => {
+      //return reject(new Error('Parcela não encontrada.'))
+      return resolve({
+        total: preco / parcelasDesejadas,
+      });
+    }, 2000);
+  });
 }
+
+const pegarPreco = buscarPreco("notebook");
+//console.log(pegarPreco);
+pegarPreco
+  .then((produto) => {
+    const prod_nome = produto.nome;
+    const v_note = produto.preco;
+
+    const pegarParcela = calcularParcela(v_note, prod_nome);
+    //console.log(pegarParcela);
+    pegarParcela.then((parcela) => {
+      const v_total = parcela.total;
+      console.log(
+        `Seu ${prod_nome} custa $${v_note.toFixed(
+          2
+        )} e você pagará em 10x de $${v_total.toFixed(2)}.`
+      );
+    });
+  })
+  .catch((err) => {
+    console.error("Erro capturado: ", err);
+  });
 
 /*
 2. Resolva usando async/await:
-
-Você quer saber quanto vai pagar em reais por um produto comprado nos EUA e para isso precisa consultar numa "API" 
-de contação para descobrir o valor do Dólar no momento da compra (você deve usar o valor do dólar comercial) e calcular 
-o valor em Real, em seguida precisa consultar outra "API" que retorna o valor de dois juros que serão cobrados sob o 
+Você quer saber quanto vai pagar em reais por um produto comprado 
+nos EUA e para isso precisa consultar numa "API" 
+de contação para descobrir o valor do Dólar no momento da compra 
+(você deve usar o valor do dólar comercial) e calcular 
+o valor em Real, em seguida precisa consultar outra "API" que 
+retorna o valor de dois juros que serão cobrados sob o 
 preço em Real e retornar o valor final
-
 dados:
-
 const precoEmDolar = 850  //preço em dólar
-
 valor de retorno no console: "O preço final do seu produto é R$5096,94"
-
 dica: valor em real + (valor em real * juros1) + (valor em real * juros2) = valor final
-
 */
 
 function buscarPrecoDolar() {
@@ -80,7 +106,18 @@ function buscarJurosImportacao() {
   });
 }
 
-async function calcularValorEmReal(precoEmDolar) {
+async function resolucao() {
   try {
-  } catch (error) {}
+    const precoEmDolar = 850;
+    const dolar_comercial = await buscarPrecoDolar();
+    const v_comercial = dolar_comercial.comercial;
+    const valor_real = precoEmDolar * parseFloat(v_comercial);
+    const juros = await buscarJurosImportacao();
+    const total_juros = juros.juros1 + juros.juros2;
+    const valor_final = valor_real + valor_real * total_juros;
+    console.log(`O preço final do seu produto é $${valor_final.toFixed(2)}.`);
+  } catch (err) {
+    console.error("Erro capturado: ", err);
+  }
 }
+resolucao();
