@@ -25,9 +25,8 @@ function buscarPreco(produto) {
           preco: 2999.9,
         });
       } else {
-        return resolve({
-          msg: "Produto não encontrado",
-        });
+        return reject("Produto não encontrado")
+       
       }
     }, 2000);
   });
@@ -49,17 +48,17 @@ const pegarPreco = buscarPreco("notebook");
 //console.log(pegarPreco);
 pegarPreco
   .then((produto) => {
-    const prod_nome = produto.nome;
-    const v_note = produto.preco;
+    const produto_nome = produto.nome;
+    const valor_produto = produto.preco;
 
-    const pegarParcela = calcularParcela(v_note, prod_nome);
+    const pegarParcela = calcularParcela(valor_produto, produto_nome);
     //console.log(pegarParcela);
     pegarParcela.then((parcela) => {
-      const v_total = parcela.total;
+      const valor_total = parcela.total;
       console.log(
-        `Seu ${prod_nome} custa $${v_note.toFixed(
+        `Seu ${produto_nome} custa $${valor_produto.toFixed(
           2
-        ).replace('.',',')} e você pagará em 10x de $${v_total.toFixed(2).replace('.',',')}.`
+        ).replace('.',',')} e você pagará em 10x de $${valor_total.toFixed(2).replace('.',',')}.`
       );
     });
   })
