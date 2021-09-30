@@ -2,7 +2,7 @@ function somar(numero) {
   return numero + numero;
 } // função síncrona
 
-// somar = (numero) => {
+// somar = (n umero) => {
 //   return numero + numero;
 // } //função síncrona com sintaxe de arrow function
 

@@ -9,34 +9,73 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 */
 
 function buscarPreco(produto) {
-  setTimeout(() => {
-    if (produto === "notebook") {
-      return {
-        nome: "notebook",
-        preco: 3499.0,
-      };
-    } else if (produto === "smartphone") {
-      return {
-        nome: "smartphone",
-        preco: 1999.9,
-      };
-    } else if (produto === "tablet") {
-      return {
-        nome: "tablet",
-        preco: 2999.9,
-      };
-    } else {
-      return "Produto não encontrado";
-    }
-  }, 2000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (produto === "notebook") {
+        return resolve({
+          nome: "notebook",
+          preco: 3499.0,
+        });
+      } else if (produto === "smartphone") {
+        return resolve({
+          nome: "smartphone",
+          preco: 1999.9,
+        });
+      } else if (produto === "tablet") {
+        return resolve({
+          nome: "tablet",
+          preco: 2999.9,
+        });
+      } else {
+        return reject("Produto não encontrado");
+      }
+    }, 2000);
+  })
 }
 
-function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
-  setTimeout(() => {
-    return preco / parcelasDesejadas;
-  }, 2000);
+function calcularParcela(preco, parcelasDesejadas) {
+  // let parcelasDesejadas = 10;
+  return new Promise ((resolve) => {
+    setTimeout(() => {
+      return resolve(preco / parcelasDesejadas);
+    }, 2000);
+  })
 }
+
+resolver = async (produto, parcelasDesejadas) => {
+  try {
+    const dadosDoProduto = await buscarPreco(produto)
+    const valorDaParcela = await calcularParcela(dadosDoProduto.preco, parcelasDesejadas)
+    let valorTotal = (dadosDoProduto.preco).toFixed(2)
+    let valorFinalDaParcela = valorDaParcela.toFixed(2)
+    console.log(`Seu notebook custa R$${valorTotal.replace(".",",")} e você pagará em ${parcelasDesejadas}x de R$${valorFinalDaParcela}`)
+  }
+  catch(err) {
+    console.error("retornou erro: ", err)
+  }
+}
+
+resolver("notebook", 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 2. Resolva usando async/await:
@@ -79,8 +118,22 @@ function buscarJurosImportacao() {
     }, 1000);
   });
 }
-
+//a função vai receber um valor
 async function calcularValorEmReal(precoEmDolar) {
   try {
-  } catch (error) {}
+    const dolar = await buscarPrecoDolar()
+    const juros = await buscarJurosImportacao()
+    let precoEmReal = precoEmDolar * dolar.comercial
+    //multiplicar o preço em real pelo dolar
+    //console.log(precoEmReal);
+    let precoFinal = precoEmReal + (precoEmReal * juros.juros1) + (precoEmReal * juros.juros2)
+    
+    console.log(`O preço final do produto é: ${precoFinal.toFixed(2).replace(".",",")}`);
+
+
+  } catch (bolsnaro) {
+    console.error("erro capturado: ", bolsonaro);
+  }
 }
+//colocar o parametro que ela vai receber
+//calcularValorEmReal(850)
