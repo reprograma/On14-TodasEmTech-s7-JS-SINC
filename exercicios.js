@@ -82,9 +82,8 @@ function buscarPrecoDolar() {
 }
 
 function buscarJurosImportacao() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      return reject(new Error ('Retornou erro!'))
       resolve({
         juros1: 0.05, //5%
         juros2: 0.09, //9%
