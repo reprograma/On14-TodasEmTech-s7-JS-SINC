@@ -59,7 +59,7 @@ pegarPreco
       console.log(
         `Seu ${prod_nome} custa $${v_note.toFixed(
           2
-        )} e você pagará em 10x de $${v_total.toFixed(2)}.`
+        ).replace('.',',')} e você pagará em 10x de $${v_total.toFixed(2).replace('.',',')}.`
       );
     });
   })
@@ -105,19 +105,16 @@ function buscarJurosImportacao() {
     }, 1000);
   });
 }
-
-async function resolucao() {
+async function calcularValorEmReal(precoEmDolar) {
   try {
-    const precoEmDolar = 850;
     const dolar_comercial = await buscarPrecoDolar();
-    const v_comercial = dolar_comercial.comercial;
-    const valor_real = precoEmDolar * parseFloat(v_comercial);
+    const valor_real = precoEmDolar * (dolar_comercial.comercial);
     const juros = await buscarJurosImportacao();
     const total_juros = juros.juros1 + juros.juros2;
     const valor_final = valor_real + valor_real * total_juros;
-    console.log(`O preço final do seu produto é $${valor_final.toFixed(2)}.`);
+    console.log(`O preço final do seu produto é $${valor_final.toFixed(2).replace('.',',')}.`);
   } catch (err) {
     console.error("Erro capturado: ", err);
   }
 }
-resolucao();
+calcularValorEmReal(850);
