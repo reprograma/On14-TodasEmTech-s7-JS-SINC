@@ -8,50 +8,56 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 
 */
 
-function buscarPreco(produto) {
-
+function dadosDoProduto(produto) {
+return new Promise((resolve, reject) => {
   setTimeout(() => {
     if (produto === "notebook") {
-      return {
+      return resolve ({
         nome: "notebook",
         preco: 3499.0,
-      };
+      });
     } else if (produto === "smartphone") {
-      return {
+      return resolve({
         nome: "smartphone",
         preco: 1999.9,
-      };
+      });
     } else if (produto === "tablet") {
-      return {
+      return resolve ({
         nome: "tablet",
         preco: 2999.9,
-      };
+      });
     } else {
-      return "Produto não encontrado";
+      return reject ("Produto não encontrado");
     }
   }, 2000);
+
+})
 }
 
-function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
+function calcularParcela(preco, parcelasDesejadas) {
+  //let parcelasDesejadas = 10;
+  return new Promise ((resolve) => {
   setTimeout(() => {
     return preco / parcelasDesejadas;
   }, 2000);
+  })
 }
 
-//RESOLUÇÃO 
+//RESOLUÇÃO com awrow function
 
-async function buscarPreco (){
+resolver = async (produto, parcelas) => {
+  try{
+    const dadosDoProduto = await dadosDoProduto (produto)
+    //console.log (preco.preco)
+    const valorDaParcela = await calcularParcela(dadosDoProduto.preco)
+  }
+  catch(err){
+    console.log ("Retornou erro: ",err)
 
-try {
-
-}catch{
-
-  
+  }
 }
 
-}
-
+resolver ("notebook")
 
 /*
 2. Resolva usando async/await:
@@ -71,6 +77,8 @@ dica: valor em real + (valor em real * juros1) + (valor em real * juros2) = valo
 
 */
 
+
+/*
 function buscarPrecoDolar() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -110,4 +118,4 @@ async function calcularValorEmReal(precoEmDolar) {
   }
 }
 
-calcularValorEmReal(850)
+calcularValorEmReal(850)*/
