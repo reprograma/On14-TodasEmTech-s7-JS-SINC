@@ -9,6 +9,7 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 */
 
 function buscarPreco(produto) {
+
   setTimeout(() => {
     if (produto === "notebook") {
       return {
@@ -99,7 +100,11 @@ async function calcularValorEmReal(precoEmDolar) {
     const dolar = await buscarPrecoDolar()
     //console.log("Dolar comercial: ", dolar.comercial) nao precisa ficar imprindo
     const juros = await buscarJurosImportacao()
-    console.log ("Juros: ", juros.juros1)
+    //console.log ("Juros: ", juros.juros1) nao precisa ficar imprimindo
+    let precoEmReal = precoEmDolar * dolar.comercial
+    //console.log("Valor em Real: ",precoEmReal)
+    let precoFinal = precoEmReal + (precoEmReal * juros.juros1) + (precoEmReal * juros.juros2)
+    console.log (`O preco final do seu produto é R$ ${precoFinal.toFixed(2).replace('.',',')}`)
   } catch (error) {
     console.error("erro capturado:", error)
   }
