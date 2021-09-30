@@ -25,24 +25,49 @@ function buscarPreco(produto) {
           preco: 2999.9,
         });
       } else {
-        return reject("Produto não encontrado")
-       
+        return reject("Produto não encontrado");
       }
     }, 2000);
   });
 }
 
-function calcularParcela(preco) {
+function calcularParcela(preco, parcelasDesejadas) {
   return new Promise((resolve, reject) => {
-    let parcelasDesejadas = 10;
+    //let parcelasDesejadas = 10;
     setTimeout(() => {
       //return reject(new Error('Parcela não encontrada.'))
-      return resolve({
-        total: preco / parcelasDesejadas,
-      });
+      return resolve(preco / parcelasDesejadas);
     }, 2000);
   });
 }
+
+//TESTANDO OUTRO MÉTODO DE RESOLUÇÃO:
+async function calcularValorDoProduto(parcelasDesejadas) {
+  try {
+    const produto = await buscarPreco("notebook");
+    const parcelas = await calcularParcela(produto.preco, parcelasDesejadas);
+    const numeroDeParcelas = parcelasDesejadas;
+    const valorTotalDeParcelas = parcelas;
+    const nomeDoProduto = produto.nome;
+    console.log(
+      `Seu ${nomeDoProduto} custa R$${produto.preco
+        .toFixed(2)
+        .replace(
+          ".",
+          ","
+        )} e você pagará em ${numeroDeParcelas}x de R$${valorTotalDeParcelas
+        .toFixed(2)
+        .replace(".", ",")}.`
+    );
+  } catch (err) {
+    console.error("Erro capturado: ", err);
+  }
+}
+calcularValorDoProduto(10);
+
+/* 
+OBS: este funciona mas o valor do produto sempre será estático, 
+não consegui passar parâmetro aqui, nem sei se tem como.
 
 const pegarPreco = buscarPreco("notebook");
 //console.log(pegarPreco);
@@ -56,15 +81,16 @@ pegarPreco
     pegarParcela.then((parcela) => {
       const valor_total = parcela.total;
       console.log(
-        `Seu ${produto_nome} custa $${valor_produto.toFixed(
+        `Seu ${produto_nome} custa R$${valor_produto.toFixed(
           2
-        ).replace('.',',')} e você pagará em 10x de $${valor_total.toFixed(2).replace('.',',')}.`
+        ).replace('.',',')} e você pagará em 10x de R$${valor_total.toFixed(2).replace('.',',')}.`
       );
     });
   })
   .catch((err) => {
     console.error("Erro capturado: ", err);
   });
+ */
 
 /*
 2. Resolva usando async/await:
@@ -107,11 +133,15 @@ function buscarJurosImportacao() {
 async function calcularValorEmReal(precoEmDolar) {
   try {
     const dolar_comercial = await buscarPrecoDolar();
-    const valor_real = precoEmDolar * (dolar_comercial.comercial);
+    const valor_real = precoEmDolar * dolar_comercial.comercial;
     const juros = await buscarJurosImportacao();
     const total_juros = juros.juros1 + juros.juros2;
     const valor_final = valor_real + valor_real * total_juros;
-    console.log(`O preço final do seu produto é $${valor_final.toFixed(2).replace('.',',')}.`);
+    console.log(
+      `O preço final do seu produto é R$${valor_final
+        .toFixed(2)
+        .replace(".", ",")}.`
+    );
   } catch (err) {
     console.error("Erro capturado: ", err);
   }
