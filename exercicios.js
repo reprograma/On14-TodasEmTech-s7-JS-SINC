@@ -42,25 +42,21 @@ function calcularParcela(preco, parcelasDesejadas) {
   })
 }
 
-
-//RESOLUÇÃO com awrow function
-
+//RESOLUÇÃO COM ARROW FUNCTION
 resolver = async (produto, parcelasDesejadas) => {
-  try{
+  try {
     const dadosDoProduto = await buscarPreco(produto)
-    //console.log (preco.preco)
     const valorDaParcela = await calcularParcela(dadosDoProduto.preco, parcelasDesejadas)
     let valorTotal = (dadosDoProduto.preco).toFixed(2)
     let valorFinalDaParcela = valorDaParcela.toFixed(2)
-    console.log(`Seu notebook custa R$${valorTotal.replace('.',',')} e você pagará em ${parcelasDesejadas} de R$${valorFinalDaParcela.replace('.',',')}`)
+    console.log(`Seu notebook custa R$${valorTotal.replace(".",",")} e você pagará em ${parcelasDesejadas}x de R$${valorFinalDaParcela}`)
   }
-  catch(err){
-    console.log ("Retornou erro: ",err)
-
+  catch(err) {
+    console.error("retornou erro: ", err)
   }
 }
 
-resolver ("notebook", 10)
+resolver("notebook", 10)
 
 /*
 2. Resolva usando async/await:
@@ -80,8 +76,6 @@ dica: valor em real + (valor em real * juros1) + (valor em real * juros2) = valo
 
 */
 
-
-/*
 function buscarPrecoDolar() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -121,4 +115,4 @@ async function calcularValorEmReal(precoEmDolar) {
   }
 }
 
-calcularValorEmReal(850)*/
+calcularValorEmReal(850)
