@@ -8,48 +8,51 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 
 */
 
-function dadosDoProduto(produto) {
-return new Promise((resolve, reject) => {
-  setTimeout(() => {
-    if (produto === "notebook") {
-      return resolve ({
-        nome: "notebook",
-        preco: 3499.0,
-      });
-    } else if (produto === "smartphone") {
-      return resolve({
-        nome: "smartphone",
-        preco: 1999.9,
-      });
-    } else if (produto === "tablet") {
-      return resolve ({
-        nome: "tablet",
-        preco: 2999.9,
-      });
-    } else {
-      return reject ("Produto não encontrado");
-    }
-  }, 2000);
-
-})
-}
-
-function calcularParcela(preco, parcelasDesejadas) {
-  //let parcelasDesejadas = 10;
-  return new Promise ((resolve) => {
-  setTimeout(() => {
-    return preco / parcelasDesejadas;
-  }, 2000);
+function buscarPreco(produto) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (produto === "notebook") {
+        return resolve({
+          nome: "notebook",
+          preco: 3499.0,
+        });
+      } else if (produto === "smartphone") {
+        return resolve({
+          nome: "smartphone",
+          preco: 1999.9,
+        });
+      } else if (produto === "tablet") {
+        return resolve({
+          nome: "tablet",
+          preco: 2999.9,
+        });
+      } else {
+        return reject("Produto não encontrado");
+      }
+    }, 2000);
   })
 }
 
+function calcularParcela(preco, parcelasDesejadas) {
+  // let parcelasDesejadas = 10;
+  return new Promise ((resolve) => {
+    setTimeout(() => {
+      return resolve(preco / parcelasDesejadas);
+    }, 2000);
+  })
+}
+
+
 //RESOLUÇÃO com awrow function
 
-resolver = async (produto, parcelas) => {
+resolver = async (produto, parcelasDesejadas) => {
   try{
-    const dadosDoProduto = await dadosDoProduto (produto)
+    const dadosDoProduto = await buscarPreco(produto)
     //console.log (preco.preco)
-    const valorDaParcela = await calcularParcela(dadosDoProduto.preco)
+    const valorDaParcela = await calcularParcela(dadosDoProduto.preco, parcelasDesejadas)
+    let valorTotal = (dadosDoProduto.preco).toFixed(2)
+    let valorFinalDaParcela = valorDaParcela.toFixed(2)
+    console.log(`Seu notebook custa R$${valorTotal.replace('.',',')} e você pagará em ${parcelasDesejadas} de R$${valorFinalDaParcela.replace('.',',')}`)
   }
   catch(err){
     console.log ("Retornou erro: ",err)
@@ -57,7 +60,7 @@ resolver = async (produto, parcelas) => {
   }
 }
 
-resolver ("notebook")
+resolver ("notebook", 10)
 
 /*
 2. Resolva usando async/await:
