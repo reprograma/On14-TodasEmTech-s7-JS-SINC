@@ -8,7 +8,7 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 
 */
 
-function buscarPreco(produto) {
+/*function buscarPreco(produto) {
   setTimeout(() => {
     if (produto === "notebook") {
       return {
@@ -31,13 +31,67 @@ function buscarPreco(produto) {
   }, 2000);
 }
 
-function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
+function calcularParcela(preco, parcelasDesejadas) {
+  //let parcelasDesejadas = 10;
   setTimeout(() => {
     return preco / parcelasDesejadas;
   }, 2000);
 }
 
+resolver = async (produto, parcelas) => {
+  //async function resolve() {
+  //ao usar async dizemos que esta função é assincrona, ou seja, retorna uma promessa
+  try {
+    //try significa que o javascript precisa executar tudo que estiver dentro deste { escopo } e se der algum erro, ele deve ser capturado pelo catch
+    const dadosDoProduto = await buscarPreco(produto); //o await significa que o javascript precisa aguardar a resolução da função assincrona passada pra poder armazenar o retorno antes de prosseguir
+    const valorDaParcela = await calcularParcela(dadosDoProduto.preco); //o await só pode ser usado em funções async
+
+    console.log(`       
+    Seu notebook custa ${noteB} e você pagará em 10x de ${valorDaParcela}
+      `);
+  } catch (error) {
+    //captura qualquer erro que ocorrer dentro do try sem permitir que o código quebre
+    console.error("Capturamos um erro: ", error);
+  }
+};
+
+resolver("notebook"); //precisamos chamar a função
+
+*/
+
+function buscarPreco(produto) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (produto === "notebook") {
+        return resolve({
+          nome: "notebook",
+          preco: 3499.0,
+        });
+      } else if (produto === "smartphone") {
+        return resolve({
+          nome: "smartphone",
+          preco: 1999.9,
+        });
+      } else if (produto === "tablet") {
+        return resolve({
+          nome: "tablet",
+          preco: 2999.9,
+        });
+      } else {
+        return reject("Produto não encontrado");
+      }
+    }, 2000);
+  });
+}
+
+function calcularParcela(preco, parcelasDesejadas) {
+  // let parcelasDesejadas = 10;
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      return resolve(preco / parcelasDesejadas);
+    }, 2000);
+  });
+}
 /*
 2. Resolva usando async/await:
 
