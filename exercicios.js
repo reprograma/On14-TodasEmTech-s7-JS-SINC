@@ -48,7 +48,7 @@ preço em Real e retornar o valor final
 
 dados:
 
-const precoEmDolar = 850  //preço em dólar
+const precoEmDolar = 850  // preço em dólar
 
 valor de retorno no console: "O preço final do seu produto é R$5096,94"
 
