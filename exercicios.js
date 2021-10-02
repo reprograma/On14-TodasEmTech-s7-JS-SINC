@@ -9,35 +9,50 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 */
 
 function buscarPreco(produto) {
+    return new Promise((resolve, reject) => {
   setTimeout(() => {
     if (produto === "notebook") {
-      return {
+      return resolve({
         nome: "notebook",
         preco: 3499.0,
-      };
+      });
     } else if (produto === "smartphone") {
-      return {
+      return resolve ({
         nome: "smartphone",
         preco: 1999.9,
-      };
+      });
     } else if (produto === "tablet") {
-      return {
+      return resolve({
         nome: "tablet",
         preco: 2999.9,
-      };
+      });
     } else {
-      return "Produto não encontrado";
+      return reject ("Produto não encontrado");
     }
   }, 2000);
+});
 }
 
-function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
+function calcularParcela(preco, parcelasDesejadas) {
+
+  return new Promise((resolve) => {
   setTimeout(() => {
-    return preco / parcelasDesejadas;
-  }, 2000);
+    return resolve (preco / parcelasDesejadas);
+  }, 2000);})
 }
 
+async function comprar(objeto, numParcelas) {
+    try {
+    const obj =  await buscarPreco(objeto);
+    const parcelas =  await calcularParcela(obj.preco, numParcelas);
+
+    console.log(` Seu notebook custa ${obj.preco} e você pagará em ${numParcelas}x de  ${parcelas}`)
+    } catch(error) {
+        console.error('erro capturado: ', error)
+    }
+}
+
+comprar("notebook", 5)
 /*
 2. Resolva usando async/await:
 
@@ -70,7 +85,7 @@ function buscarPrecoDolar() {
 function buscarJurosImportacao() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve({
+    resolve({
         juros1: 0.05,
         juros2: 0.09,
         messages:
@@ -82,5 +97,13 @@ function buscarJurosImportacao() {
 
 async function calcularValorEmReal(precoEmDolar) {
   try {
-  } catch (error) {}
+      const dolar = await buscarPrecoDolar()
+      const juros = await buscarJurosImportacao()
+      let precoEmReal = precoEmDolar * dolar.comercial;
+      let precoFinal = precoEmReal + (precoEmReal * juros.juros1) + (precoEmReal * juros.juros2)
+      console.log(precoFinal.toFixed(2).replace('.',','))
+  } catch (error) {
+      console.error('erro capturado: ', error)
+  }
 }
+calcularValorEmReal(850)
