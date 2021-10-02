@@ -11,3 +11,18 @@
     2. A partir da id da usuária obter o endereço cadastrado;
     3. A partir da id da usuária obter o histórico de pedidos;
 */
+
+function pegarUsuaria () {
+  setTimeout(() => {
+    return {
+      nome : "Pepita",
+      email: "mulherpepita@gmail.com"
+    }
+    
+  }, 2000);
+}
+
+const usuaria = pegarUsuaria();
+
+console.log("Usuária: " + usuaria );
+
