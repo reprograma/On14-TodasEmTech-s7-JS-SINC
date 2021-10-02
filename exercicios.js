@@ -9,34 +9,58 @@ ferramentas aprendidas nesta aula para resolver o código assíncrono e obter o 
 */
 
 function buscarPreco(produto) {
-  setTimeout(() => {
-    if (produto === "notebook") {
-      return {
-        nome: "notebook",
-        preco: 3499.0,
-      };
-    } else if (produto === "smartphone") {
-      return {
-        nome: "smartphone",
-        preco: 1999.9,
-      };
-    } else if (produto === "tablet") {
-      return {
-        nome: "tablet",
-        preco: 2999.9,
-      };
-    } else {
-      return "Produto não encontrado";
-    }
-  }, 2000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (produto === "notebook") {
+        return resolve({
+          nome: "notebook",
+          preco: 3499.0,
+        });
+      } else if (produto === "smartphone") {
+        return resolve({
+          nome: "smartphone",
+          preco: 1999.9,
+        });
+      } else if (produto === "tablet") {
+        return resolve({
+          nome: "tablet",
+          preco: 2999.9,
+        });
+      } else {
+        return reject("Produto não encontrado");
+      }
+    }, 2000);
+  })
 }
 
-function calcularParcela(preco) {
-  let parcelasDesejadas = 10;
-  setTimeout(() => {
-    return preco / parcelasDesejadas;
-  }, 2000);
+function calcularParcela(preco, parcelasDesejadas) {
+  // let parcelasDesejadas = 10;
+  return new Promise ((resolve) => {
+    setTimeout(() => {
+      return resolve(preco / parcelasDesejadas);
+    }, 2000);
+  })
 }
+
+resolver = async (produto, parcelasDesejadas) => {
+  try {
+    const dadosDoProduto = await buscarPreco(produto);
+    const valorDaParcela = await calcularParcela(dadosDoProduto.preco, parcelasDesejadas);
+    let valorTotal = (dadosDoProduto.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    let valorFinalDaParcela = valorDaParcela.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    console.log("")
+    console.log("Atividade 1: Calcular o valor total e o valor das parcelas do notebook da Bigbig.")
+    console.log("")
+    console.log(`Seu notebook custa ${valorTotal} e você pagará em ${parcelasDesejadas}x de ${valorFinalDaParcela}.`);
+    console.log("")
+  }
+  catch(err) {
+    console.error(err);
+  }
+}
+
+resolver("notebook", 10);
 
 /*
 2. Resolva usando async/await:
@@ -48,13 +72,14 @@ preço em Real e retornar o valor final
 
 dados:
 
-const precoEmDolar = 850  //preço em dólar
+const precoEmDolar = 850   //preço em dólar
 
 valor de retorno no console: "O preço final do seu produto é R$5096,94"
 
 dica: valor em real + (valor em real * juros1) + (valor em real * juros2) = valor final
 
 */
+
 
 function buscarPrecoDolar() {
   return new Promise((resolve) => {
@@ -82,5 +107,19 @@ function buscarJurosImportacao() {
 
 async function calcularValorEmReal(precoEmDolar) {
   try {
-  } catch (error) {}
+    const dolar = await buscarPrecoDolar();
+    const juros = await buscarJurosImportacao();
+    let precoEmReal = precoEmDolar * dolar.comercial;
+    let precoFinal = (precoEmReal + (precoEmReal * juros.juros1) + (precoEmReal * juros.juros2)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    console.log("")
+    console.log("Atividade 2: Converter o valor de um produto em Dólar para o Real.")
+    console.log("")
+    console.log(`O preço final do seu produto é ${precoFinal}.`);
+    console.log("")
+  } catch (error) {
+    console.error("Erro capturado: ", error);
+  }
 }
+
+calcularValorEmReal(850);
