@@ -12,37 +12,7 @@ Esta é a 7ª semana da turma online: Todas em Tech 14 - Back-end, nesta aula do
 
 <br>
 
-## Apresentações
-
-### Quem é a professora Lilit?
-
-<img src='./assets/lilit.jpg' width=200 alt='selfie de Lilit com cabelos cacheados longos, blusa preta, baton vinho e delineador preto, o fundo está desfocado'>
-
-[Lilit Bandeira](https://www.instagram.com/lilitbandeira), é uma travesti paraibana residente no Recife, Software Engineer na Sanar, desenvolvedora Fullstack, ex-aluna {reprograma} e estudante de Cinema e Audiovisual na UFPE;
-
-#### Contatos
-
-- E-mail: devlilitbandeira@gmail.com
-- [LinkedIn](https://www.linkedin.com/in/lilitbandeira)
-- [GitHub](https://github.com/lilitbandeira)
-
-### Quem são as monitoras?
-
-<img src='./assets/nicoRobin.jpeg' width=500 alt='personagem nico robin do anime one piece, ela tem cabelos pretos amarrados para trás com duas mechas soltas na frente, olhos verdes, veste uma jaqueta azul e tem óculos de sol sob os cabelos, seus braços estão cruzados na frente do corpo e possuem cor preta e uma aura azul, ao fundo o universo com pétalas de flores e uma lótus aberta'>
-
-### Quem são as alunas?
-
-<img src='./assets/sailorMoon.jpeg' width=500 alt='5 personagens do anime sailor moon, todas vestem vestidinho curto colegial, cada uma com uma cor, esquerda para direita temos a primeira com cabelos longos loiros com vestido laranja e laço azul escuro, segunda com cabelos pretos longos e vestido vermelho com laço roxo, no meio uma de cabelos loiros longos amarrados em dois coques laterais, vestido azul e laço vermelho, a quarta tem cabelos curtos verdes e vestido e laço azul claro, a quinta tem cabelos castanhos amarrados e usa vestido verde com laço rosa, ao fundo a cidade de toquio a noite e uma lua crescente'>
-
-## Acordos
-
-- Manter atenção nas explicações e codar nos momentos definidos;
-- Enviar dúvidas no chat para as monitoras ajudarem;
-- Levantar a mão sempre que desejar falar, o que pode ser feito a qualquer momento;
-- Manter microfones desligados sempre que alguém estiver falando;
-- As câmeras ligadas serão de grande apoio para mim!
-
-## Plano de aula
+## Assuntos Estudados
 
 ### 1. Ciclo de vida das aplicações JavaScript
 
