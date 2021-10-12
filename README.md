@@ -235,3 +235,9 @@ async function calcularValorEmReal(precoEmDolar) {
 |                | Erick Wendel    | https://www.youtube.com/watch?v=_gmXKsVS40s |
 | async/await    | DevPleno        | https://www.youtube.com/watch?v=D01xWkT2W7c |
 |                | Código Fonte TV | https://www.youtube.com/watch?v=h0sNAXE1ozo |
+
+## Agradecimento:  
+
+- [Professora Simara Conceição](https://www.linkedin.com/in/simaraconceicao/), de quem peguei referência para a construção deste README para o repositório de aula;
+
+E todas as minhas professoras e amigas do {reprograma} com quem sempre aprendo ♥️
