@@ -84,3 +84,4 @@ async function calcularValorEmReal(precoEmDolar) {
   try {
   } catch (error) {}
 }
+
