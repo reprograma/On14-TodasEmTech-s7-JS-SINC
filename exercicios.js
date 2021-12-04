@@ -53,7 +53,7 @@ resolver = async (produto, parcelasDesejadas) => {
   }
 }
 
-resolver("notebook", 5)
+resolver("notebook", 10)
 
 
 /*
@@ -104,8 +104,8 @@ async function calcularValorEmReal(precoEmDolar) {
 
     console.log(`O preço final do seu produto é R$${precoFinal.toFixed(2).replace('.', ',')}`)
 
-  } catch (bolsonaro) {
-    console.error("erro capturado: ", bolsonaro)
+  } catch (error) {
+    console.error("erro capturado: ", error)
   }
 }
 
