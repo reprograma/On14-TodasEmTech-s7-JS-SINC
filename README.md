@@ -226,15 +226,12 @@ async function calcularValorEmReal(precoEmDolar) {
 
 ####Extras
 
-| Complementares | Canal           | Link                                        |
-| -------------- | --------------- | ------------------------------------------- |
-| JS Assíncrono  | DevPleno        | https://www.youtube.com/watch?v=7Bs4-rqbCQc |
-| Callbacks      | Código Fonte TV | https://www.youtube.com/watch?v=zUtqTM6_-PM |
-|                | Marco Bruno     | https://www.youtube.com/watch?v=0haWgdHFuJw |
-| Promises       | Código Fonte TV | https://www.youtube.com/watch?v=nRJhc6vXyK4 |
-|                | Erick Wendel    | https://www.youtube.com/watch?v=_gmXKsVS40s |
-| async/await    | DevPleno        | https://www.youtube.com/watch?v=D01xWkT2W7c |
-|                | Código Fonte TV | https://www.youtube.com/watch?v=h0sNAXE1ozo |
+| Complementares  | Canal              | Link                                        |
+| --------------- | ------------------ | ------------------------------------------- |
+| JS Assíncrono   | DevPleno           | https://www.youtube.com/watch?v=7Bs4-rqbCQc |
+| Callbacks       | Marco Bruno        | https://www.youtube.com/watch?v=0haWgdHFuJw |
+| Promises        | Erick Wendel       | https://www.youtube.com/watch?v=_gmXKsVS40s |                
+| async/await     | DevPleno           | https://www.youtube.com/watch?v=D01xWkT2W7c |
 
 ## Agradecimento:  
 
